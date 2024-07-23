@@ -42,7 +42,7 @@ To run the Chatter Box locally, follow these steps:
 ## File Structure
 
 ```
-gifted-nk-chatbot/
+Chatbot-Development-Workshop-Training/
 │
 ├── index.html
 ├── styles.css
