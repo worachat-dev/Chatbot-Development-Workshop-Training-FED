@@ -1,4 +1,3 @@
-```markdown
 # Chatbot Development Workshop Training : Chatter Box!
 
 Chatter Box! is a web-based chatbot interface designed for both mobile and desktop users. It features a modern, responsive design with quick action buttons for a seamless user experience.
@@ -80,5 +79,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 *Created with ❤️ by [Worachat Wannawong, Ph.D.]*
-
-```
