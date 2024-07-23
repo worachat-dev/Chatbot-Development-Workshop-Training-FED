@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Gifted NK Chatter Box!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,300" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400&family=Finger+Paint&display=swap" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 1.3vw;
+            font-family: "Epilogue", sans-serif;
+        }
+
+        html {
+            --scrollbarBG: #fff;
+            --thumbBG: rgb(63, 63, 70);
+        }
+
+        body {
+            background-color: #f9fafb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .botbody {
+            background: #CCFF99;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            height: auto;
+            width: fit-content;
+            min-width: 35rem;
+            background-color: black;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 1rem;
+        }
+
+        #botheader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #000;
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        #botheader h1 {
+            color: #fff;
+            font-size: 1.5rem;
+            font-family: "Finger Paint", cursive;
+        }
+
+        .send {
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .send .circle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 2.8rem;
+            height: 2.8rem;
+            background-color: rgb(57, 57, 150);
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        .send .circle i {
+            font-size: 1.5rem;
+        }
+
+        .send:hover .circle {
+            opacity: 0.7;
+        }
+
+        #message-section {
+            height: 30rem;
+            max-height: 450px;
+            overflow-y: auto;
+            margin: 1rem 0;
+            scrollbar-color: black var(--thumbBG);
+        }
+
+        #message-section::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        #message-section::-webkit-scrollbar-thumb {
+            background-color: rgb(255, 255, 255);
+        }
+
+        #message-section::-webkit-scrollbar-track {
+            background-color: rgb(0, 0, 0);
+        }
+
+        .message {
+            background-color: rgb(63, 63, 70);
+            color: #fff;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        #bot {
+            align-self: flex-start;
+            border-radius: 10px 10px 10px 0;
+        }
+
+        #user {
+            align-self: flex-end;
+            background-color: #fff;
+            color: #000;
+            border-radius: 10px 10px 0 10px;
+        }
+
+        #input-section {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 1rem;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 20px;
+            background-color: rgb(63, 63, 70);
+            color: white;
+            margin-right: 0.5rem;
+            outline: none;
+        }
+
+        #user-input:focus {
+            border: 1px solid white;
+        }
+
+        .quickbtns {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+        }
+
+        .quickmessage {
+            background-color: rgb(57, 57, 150);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .quickmessage:hover {
+            background-color: rgb(36, 36, 94);
+        }
+
+        .quickmessage:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(57, 57, 150, 0.5);
+        }
+
+        .typing-animation {
+            animation: typing 2s infinite;
+        }
+
+        @keyframes typing {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        @media (max-width: 767px) {
+            .card {
+                min-width: 80vw;
+                font-size: 1.2vw;
+            }
+
+            .quickmessage {
+                font-size: 1rem;
+            }
+
+            #botheader {
+                font-size: 1.8rem;
+            }
+
+            #message-section {
+                height: 50vh;
+            }
+
+            * {
+                font-size: 9px;
+            }
+
+            input {
+                padding: 0.5rem;
+                padding-left: 1.2rem;
+            }
+
+            .send .circle {
+                width: 2.6rem;
+                height: 2.6rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 1rem;
+            }
+
+            #botheader {
+                font-size: 1.8rem;
+            }
+
+            .send .circle {
+                width: 2.6rem;
+                height: 2.6rem;
+            }
+
+            input {
+                padding: 0.5rem;
+                padding-left: 1.2rem;
+            }
+
+            .quickmessage {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="botbody">
+        <div class="card">
+            <div id="botheader">
+                <h1>Gifted NK Chatter Box!</h1>
+                <button class="send" onclick="reset()">
+                    <div class="circle refresh">
+                        <i class="zmdi zmdi-refresh-sync" style="font-size: 1.5rem;"></i>
+                    </div>
+                </button>
+            </div>
+            <div id="message-section">
+                <!-- Chat messages will be displayed here -->
+                <div class="message" id="bot"><span id="bot-response">What's up? Bro!.. I'm the NK Rapper! Go on..</span></div>
+            </div>
+            <div class="quickbtns">
+                <button tabindex="2" class="quickmessage" data-message="Check ID 📝" onclick="send(this.getAttribute('data-message'))">Check ID 📝</button>
+                <button tabindex="1" class="quickmessage" data-message="Report a Bug 🐞" onclick="send(this.getAttribute('data-message'))">Report a Bug 🐞</button>
+            </div>
+            <div id="input-section">
+                <input id="user-input" type="text" placeholder="Type a message..." autocomplete="on" autofocus tabindex="3" />
+                <button type="submit" class="send sendmessage" onclick="sendMessage()" tabindex="3">
+                    <div class="circle">
+                        <i class="zmdi zmdi-mail-send" style="font-size: 1.5rem;"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function reset() {
+            document.getElementById("message-section").innerHTML = '<div class="message" id="bot"><span id="bot-response">Hi.. I\'m here to help you, Bro! Go on..</span></div>';
+        }
+
+        function send(message) {
+            var userInput = document.getElementById("user-input");
+            userInput.value = message;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            var userInput = document.getElementById("user-input");
+            var message = userInput.value.trim();
+            if (message) {
+                var messageSection = document.getElementById("message-section");
+                var userMessage = document.createElement("div");
+                userMessage.className = "message";
+                userMessage.id = "user";
+                userMessage.innerHTML = `<span id="user-response">${message}</span>`;
+                messageSection.appendChild(userMessage);
+                userInput.value = "";
+                messageSection.scrollTop = messageSection.scrollHeight;
+            }
+        }
+    </script>
+</body>
+
+</html>
+

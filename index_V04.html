@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Worachat No01 Chatbot</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,300">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400&family=Finger+Paint&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .botbody {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        .botcontent {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card {
+            padding: 20px;
+        }
+
+        #botheader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #botheader h1 {
+            font-family: 'Finger Paint', cursive;
+            font-size: 1.5rem;
+            margin: 0;
+            color: #4a90e2;
+        }
+
+        .send {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .send .circle {
+            background-color: #4a90e2;
+            color: white;
+            border-radius: 50%;
+            padding: 10px;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 20px 0;
+        }
+
+        #message-section {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        #bot-response {
+            color: #4a90e2;
+        }
+
+        .quickbtns {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .quickmessage {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .quickmessage:hover {
+            background-color: #357ab8;
+        }
+
+        #input-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #user-input {
+            width: calc(100% - 60px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .sendmessage {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .sendmessage .circle {
+            background-color: #4a90e2;
+            color: white;
+            border-radius: 50%;
+            padding: 10px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: underline;
+            font-size: inherit;
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="botbody">
+        <div class="botcontent">
+            <div class="card">
+                <div id="botheader">
+                    <h1>Gifted NK Chatter Box!</h1>
+                    <button class="send" onclick="reset()">
+                        <div class="circle refresh"><i class="zmdi zmdi-refresh-sync"
+                                style="font-size: 1.5rem; margin-left: 0.2rem;"></i></div>
+                    </button>
+                </div>
+                <hr>
+                <div id="message-section">
+                    <!-- Chat messages will be displayed here -->
+                    <div class="message" id="bot"><span id="bot-response">What's up? Bro!.. I'm the NK Rapper! Go on..</span></div>
+                </div>
+                <div class="quickbtns">
+                    <button tabindex="2" class="quickmessage" data-message="Check ID 📝"
+                        onclick="send(this.getAttribute('data-message'))">Check ID 📝</button>
+                    <button tabindex="1" class="quickmessage" data-message="Report a Bug 🐞"
+                        onclick="send(this.getAttribute('data-message'))">Report a Bug 🐞</button>
+                </div>
+                <div id="input-section">
+                    <input id="user-input" type="text" placeholder="Type a message..." autocomplete="on"
+                        autofocus="autofocus" tabindex="3" />
+                    <button type="submit" class="send sendmessage" onclick="sendMessage()" tabindex="3">
+                        <div class="circle"><i class="zmdi zmdi-mail-send"
+                                style="font-size: 1.5rem; margin-left: 0.2rem;"></i></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function reset() {
+            document.getElementById("message-section").innerHTML = '<div class="message" id="bot"><span id="bot-response">Hi.. I\'m here to help you, Bro! Go on..</span></div>';
+        }
+
+        function send(message) {
+            var userInput = document.getElementById("user-input");
+            userInput.value = message;
+            var sendButton = document.querySelector('.send[type="submit"]');
+            sendButton.click();
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
+

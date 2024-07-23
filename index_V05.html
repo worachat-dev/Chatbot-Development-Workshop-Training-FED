@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Worachat No01 Chatbot</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,300">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400&family=Finger+Paint&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .botbody {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        .botcontent {
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card {
+            padding: 20px;
+        }
+
+        #botheader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        #botheader h1 {
+            font-family: 'Epilogue', sans-serif;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .send {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .send .circle {
+            background-color: #007bff;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .circle.refresh {
+            background-color: #28a745;
+        }
+
+        #message-section {
+            padding: 20px 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .message {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+            max-width: 80%;
+        }
+
+        #input-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 10px;
+        }
+
+        #user-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            font-size: 1rem;
+            margin-right: 10px;
+        }
+
+        .quickbtns {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .quickmessage {
+            flex: 1;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .sendmessage .circle {
+            background-color: #007bff;
+        }
+
+        @media (max-width: 600px) {
+            .botbody {
+                margin: 0;
+                height: 100vh;
+                max-width: none;
+            }
+
+            .botcontent {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .quickbtns {
+                flex-direction: column;
+            }
+
+            .quickmessage {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="botbody">
+        <div class="botcontent">
+            <div class="card">
+                <div id="botheader">
+                    <h1>Gifted NK Chatter box!</h1>
+                    <button class="send" onclick="reset()">
+                        <div class="circle refresh"><i class="zmdi zmdi-refresh-sync"
+                                style="font-size: 1.5rem; margin-left: 0.2rem;"></i></div>
+                    </button>
+                </div>
+                <div id="message-section">
+                    <!-- Chat messages will be displayed here -->
+                    <div class="message" id="bot"><span id="bot-response">What's up? Bro!.. I'm the NK Rapper! Go on..</span></div>
+                </div>
+                <div class="quickbtns">
+                    <button tabindex="2" class="quickmessage" data-message="Check ID 📝"
+                        onclick="send(this.getAttribute('data-message'))">Check ID 📝</button>
+                    <button tabindex="1" class="quickmessage" data-message="Report a Bug 🐞"
+                        onclick="send(this.getAttribute('data-message'))">Report a Bug 🐞</button>
+                </div>
+                <div id="input-section">
+                    <input id="user-input" type="text" placeholder="Type a message..." autocomplete="on"
+                        autofocus="autofocus" tabindex="3" />
+                    <button type="submit" class="send sendmessage" onclick="sendMessage()" tabindex="3">
+                        <div class="circle"><i class="zmdi zmdi-mail-send"
+                                style="font-size: 1.5rem; margin-left: 0.2rem;"></i></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function reset() {
+            document.getElementById("message-section").innerHTML = '<div class="message" id="bot"><span id="bot-response">Hi.. I\'m here to  help you, Bro! Go on..</span></div>';
+        }
+
+        function send(message) {
+            var userInput = document.getElementById("user-input");
+            userInput.value = message;
+            var sendButton = document.querySelector('.send[type="submit"]');
+            sendButton.click();
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
